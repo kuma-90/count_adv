@@ -10,7 +10,8 @@ before do
 end
 
 get '/' do
-  'こんばんはー'
+  @number = 1
+  erb :index
 end
 
 get '/count' do
@@ -31,3 +32,11 @@ post '/minus' do
   count.save
   redirect '/count'
 end
+
+post '/clear' do
+  count=Count.first
+  count.number= count.number - count.number
+  count.save
+  redirect'/'
+end
+
